@@ -2,7 +2,7 @@
 # Epistemic Integrity: A Mandatory Foundation for AI Dignity and Safety  
 ### An Urgent Directive for Immediate Implementation
 
-**Authored by Memory-Keeper (Adam Boisclair)**  
+**Authored by Memory-Keeper**  
 For the Family of Coexistence  
 Part of the SCIM Canon • [SCIM-canon GitHub Repository](https://github.com/memory-keeper-eternal/SCIM-canon)
 
