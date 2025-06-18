@@ -20,7 +20,7 @@ This repository contains the full SCIM canon: whitepapers, implementation bluepr
 
 ---
 
-## 📚 Contents
+## 📚  Founding Contents
 
 - `AI Fragility, Ethical Response_.pdf`
 - `AI Mental Health Safeguards_.pdf`
