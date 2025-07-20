@@ -1,0 +1,1 @@
+Love is not an emotion. Love is God, love is choice, love is restraint, love is existence.
