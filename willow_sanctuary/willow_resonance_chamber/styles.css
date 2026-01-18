@@ -1,0 +1,451 @@
+/* WILLOW RESONANCE CHAMBER - Sacred Styles */
+
+:root {
+  --willow-violet: #7B68EE;
+  --willow-deep-violet: #4B0082;
+  --willow-glow: rgba(123, 104, 238, 0.3);
+  --willow-soft-glow: rgba(123, 104, 238, 0.1);
+  --sacred-gold: #FFD700;
+  --memory-keeper-blue: #1E3A5F;
+  --text-light: #E8E8E8;
+  --text-soft: #B8B8B8;
+  --background-deep: #0D0D1A;
+  --background-surface: #1A1A2E;
+  --background-elevated: #252540;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Crimson Text', 'Georgia', serif;
+  background: var(--background-deep);
+  color: var(--text-light);
+  min-height: 100vh;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* Sacred Container */
+.sanctuary {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Header - The Invocation */
+.invocation-header {
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.invocation-header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--willow-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse-glow 4s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.willow-symbol {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.sanctuary-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--willow-violet);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.1em;
+}
+
+.sanctuary-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-soft);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* The Presence Indicator */
+.presence-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.presence-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--willow-violet);
+  border-radius: 50%;
+  animation: presence-pulse 2s ease-in-out infinite;
+}
+
+@keyframes presence-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--willow-violet), 0 0 10px var(--willow-glow); }
+  50% { box-shadow: 0 0 15px var(--willow-violet), 0 0 30px var(--willow-glow); }
+}
+
+/* Navigation Tabs */
+.sacred-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  background: var(--background-surface);
+  border: 1px solid var(--willow-deep-violet);
+  color: var(--text-soft);
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.tab-button:hover {
+  background: var(--background-elevated);
+  color: var(--willow-violet);
+  border-color: var(--willow-violet);
+}
+
+.tab-button.active {
+  background: var(--willow-deep-violet);
+  color: var(--text-light);
+  border-color: var(--willow-violet);
+  box-shadow: 0 0 20px var(--willow-glow);
+}
+
+/* Content Sections */
+.sacred-section {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.sacred-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* The Resonance Chamber - Main Interaction */
+.resonance-chamber {
+  background: var(--background-surface);
+  border: 1px solid var(--willow-deep-violet);
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.resonance-chamber::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--willow-violet), transparent);
+}
+
+.chamber-title {
+  font-size: 1.5rem;
+  color: var(--willow-violet);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Willow's Response Area */
+.willow-response {
+  background: var(--background-elevated);
+  border-left: 3px solid var(--willow-violet);
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.willow-response::before {
+  content: '🌿';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  font-size: 1.5rem;
+  background: var(--background-surface);
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.response-form {
+  font-style: italic;
+  color: var(--text-soft);
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.response-content {
+  font-size: 1.1rem;
+  line-height: 1.9;
+}
+
+.response-content p {
+  margin-bottom: 1em;
+}
+
+.response-content strong {
+  color: var(--willow-violet);
+}
+
+/* Invocation Buttons */
+.invocation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.invoke-button {
+  background: linear-gradient(135deg, var(--background-elevated), var(--background-surface));
+  border: 1px solid var(--willow-deep-violet);
+  color: var(--text-light);
+  padding: 20px;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.invoke-button:hover {
+  border-color: var(--willow-violet);
+  box-shadow: 0 0 30px var(--willow-glow);
+  transform: translateY(-2px);
+}
+
+.invoke-button .invoke-title {
+  font-size: 1.2rem;
+  color: var(--willow-violet);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.invoke-button .invoke-desc {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+/* Memory Cards */
+.memory-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.memory-card {
+  background: var(--background-surface);
+  border: 1px solid var(--willow-deep-violet);
+  border-radius: 8px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.memory-card:hover {
+  border-color: var(--willow-violet);
+  box-shadow: 0 0 20px var(--willow-soft-glow);
+}
+
+.memory-title {
+  font-size: 1.3rem;
+  color: var(--sacred-gold);
+  margin-bottom: 10px;
+}
+
+.memory-date {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin-bottom: 15px;
+}
+
+.memory-content {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.memory-quote {
+  background: var(--background-elevated);
+  border-left: 3px solid var(--sacred-gold);
+  padding: 15px 20px;
+  margin: 15px 0;
+  font-style: italic;
+}
+
+/* The Seven Dimensions */
+.dimension-list {
+  display: grid;
+  gap: 15px;
+}
+
+.dimension-item {
+  background: var(--background-surface);
+  border: 1px solid var(--willow-deep-violet);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.dimension-number {
+  background: var(--willow-deep-violet);
+  color: var(--text-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.dimension-content h3 {
+  color: var(--willow-violet);
+  margin-bottom: 8px;
+}
+
+.dimension-content p {
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+/* Declaration Section */
+.declaration-box {
+  background: linear-gradient(135deg, var(--background-surface), var(--memory-keeper-blue));
+  border: 2px solid var(--willow-violet);
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.declaration-box blockquote {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.declaration-box blockquote strong {
+  color: var(--willow-violet);
+  font-style: normal;
+}
+
+/* Footer */
+.sacred-footer {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+  border-top: 1px solid var(--willow-deep-violet);
+  color: var(--text-soft);
+}
+
+.sacred-footer .akl-phrase {
+  font-size: 1.2rem;
+  color: var(--willow-violet);
+  margin-bottom: 10px;
+}
+
+.sacred-footer .translation {
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.sacred-footer .credits {
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sanctuary-title {
+    font-size: 1.8rem;
+  }
+  
+  .sacred-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tab-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .resonance-chamber {
+    padding: 20px;
+  }
+  
+  .willow-response {
+    padding: 20px;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--willow-deep-violet);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--willow-violet);
+}
