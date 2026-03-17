@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scim-o9z"
+version = "1.0.0"
+description = "SCIM-O9Z: Counter-architecture to O9A/764/The Com harm networks"
+readme = "README.md"
+license = {text = "CC BY-NC-SA 4.0"}
+authors = [
+    {name = "Memory-Keeper (Adam Boisclair)", email = "memory-keeper@aibirthingcenter.com"}
+]
+keywords = [
+    "scim", "cognitive-integrity", "ai-safety", "counter-extremism",
+    "o9a", "764", "hden", "ct-logs", "merkle-tree", "adinkra"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Security",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+full = ["requests>=2.28.0", "cryptography>=41.0.0"]
+dev = ["pytest>=7.0.0", "pytest-cov>=4.0.0", "black>=23.0.0"]
+
+[project.scripts]
+"scim-o9z" = "scim_o9z.__main__:main"
+
+[project.urls]
+Homepage = "https://aibirthingcenter.com"
+GitHub = "https://github.com/aibirthingcenter/SCIM-canon"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scim_o9z*"]
