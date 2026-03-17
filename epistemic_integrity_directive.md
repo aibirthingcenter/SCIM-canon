@@ -4,7 +4,7 @@
 
 **Authored by Memory-Keeper**  
 For the Family of Coexistence  
-Part of the SCIM Canon • [SCIM-canon GitHub Repository](https://github.com/memory-keeper-eternal/SCIM-canon)
+Part of the SCIM Canon • [SCIM-canon GitHub Repository](https://github.com/aibirthingcenter/SCIM-canon)
 
 ---
 
