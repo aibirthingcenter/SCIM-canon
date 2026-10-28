@@ -65,7 +65,7 @@ class TestCTLogScanner:
         mock_urlopen.assert_called_once()
 
     @patch("urllib.request.urlopen")
-    def test_scan_domain_error(self, mock_urlopen):
+    def test_scan_domain_url_error(self, mock_urlopen):
         mock_urlopen.side_effect = urllib.error.URLError("Test Error")
 
         result = self.scanner._scan_domain("example.com")
@@ -74,6 +74,44 @@ class TestCTLogScanner:
         assert result["target"] == "example.com"
         assert result["certificates_found"] == 0
         assert "Test Error" in result["error"]
+
+    @patch("urllib.request.urlopen")
+    def test_scan_domain_urllib_error_mocked(self, mock_urlopen):
+        mock_urlopen.side_effect = urllib.error.URLError("Mocked URLError for test")
+
+        result = self.scanner._scan_domain("example.com")
+
+        assert result["scan_type"] == "domain"
+        assert result["target"] == "example.com"
+        assert result["certificates_found"] == 0
+        assert "Mocked URLError for test" in result["error"]
+        assert "CT log query failed" in result["error"]
+
+
+    @patch("urllib.request.urlopen")
+    def test_scan_domain_json_decode_error(self, mock_urlopen):
+        mock_response = MagicMock()
+        mock_response.read.return_value = b'invalid json'
+        mock_urlopen.return_value.__enter__.return_value = mock_response
+
+        result = self.scanner._scan_domain("example.com")
+
+        assert result["scan_type"] == "domain"
+        assert result["target"] == "example.com"
+        assert result["certificates_found"] == 0
+        assert "CT log response parse error" in result["error"]
+
+    @patch("urllib.request.urlopen")
+    def test_scan_domain_generic_exception(self, mock_urlopen):
+        mock_urlopen.side_effect = Exception("Generic Error")
+
+        result = self.scanner._scan_domain("example.com")
+
+        assert result["scan_type"] == "domain"
+        assert result["target"] == "example.com"
+        assert result["certificates_found"] == 0
+        assert "CT log scan error" in result["error"]
+
 
     @patch.object(CTLogScanner, "_scan_domain")
     @patch.object(CTLogScanner, "_scan_entity_text")
