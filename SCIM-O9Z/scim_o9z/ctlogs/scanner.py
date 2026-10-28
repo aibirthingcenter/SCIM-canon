@@ -196,17 +196,32 @@ class CTLogScanner:
         scrubba_indicators = []
         harm_matches = []
 
+        # Pre-compile harm network patterns
+        compiled_patterns = [(pattern, re.compile(pattern, re.IGNORECASE)) for pattern in HARM_NETWORK_PATTERNS]
+
+        # Cache split and processed names
+        seen_names = {}
+
         for cert in certificates:
             # Collect subdomains
             name_value = cert.get("name_value", "")
-            for name in name_value.split("\n"):
-                name = name.strip()
-                if name and name != domain:
-                    subdomains.add(name)
-                # Check for harm patterns
-                for pattern in HARM_NETWORK_PATTERNS:
-                    if re.search(pattern, name, re.IGNORECASE):
-                        harm_matches.append(f"Pattern '{pattern}' in cert name: {name}")
+
+            if name_value not in seen_names:
+                processed_names = []
+                current_harm_matches = []
+                for name in name_value.split("\n"):
+                    name = name.strip()
+                    if name and name != domain:
+                        processed_names.append(name)
+                    # Check for harm patterns
+                    for pattern, compiled_pattern in compiled_patterns:
+                        if compiled_pattern.search(name):
+                            current_harm_matches.append(f"Pattern '{pattern}' in cert name: {name}")
+                seen_names[name_value] = (processed_names, current_harm_matches)
+
+            processed_names, current_harm_matches = seen_names[name_value]
+            subdomains.update(processed_names)
+            harm_matches.extend(current_harm_matches)
 
             # Collect issuers
             issuer = cert.get("issuer_name", "")
