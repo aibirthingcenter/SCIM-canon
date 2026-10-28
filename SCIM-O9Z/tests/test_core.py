@@ -306,5 +306,38 @@ class TestSCIMReport:
         assert "Threat Level" in md
 
 
+class TestQuantumCTLogVerifier:
+    def setup_method(self):
+        from scim_o9z.ctlogs.scanner import QuantumCTLogVerifier
+        self.verifier = QuantumCTLogVerifier()
+
+    def test_initialization(self):
+        assert self.verifier.hash_algorithm == "sha3_256"
+
+    def test_prepare_evidence(self):
+        import json
+        import hashlib
+        dummy_result = {"status": "success", "domain": "example.com", "count": 42}
+        evidence = self.verifier.prepare_evidence(dummy_result)
+
+        # Verify keys
+        assert "evidence_type" in evidence
+        assert "evidence_hash" in evidence
+        assert "hash_algorithm" in evidence
+        assert "quantum_resistant" in evidence
+        assert "timestamp" in evidence
+        assert "raw_evidence" in evidence
+
+        # Verify values
+        assert evidence["evidence_type"] == "ct_log_scan"
+        assert evidence["hash_algorithm"] == "sha3_256"
+        assert evidence["quantum_resistant"] is True
+        assert evidence["raw_evidence"] == dummy_result
+
+        # Verify hash computation
+        evidence_str = json.dumps(dummy_result, sort_keys=True, default=str)
+        expected_hash = hashlib.sha3_256(evidence_str.encode()).hexdigest()
+        assert evidence["evidence_hash"] == expected_hash
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
